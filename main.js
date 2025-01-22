@@ -51,6 +51,69 @@ const sr = ScrollReveal({
 //     reset: true
 });
 
+
+const projects = {
+    restaurant: {
+        title: "Restaurant Website",
+        img: "restaurent.png",
+        description: "A modern restaurant website offers online ordering, menu management, and reservations. Customers can browse, customize orders, and book tables seamlessly. Features like reviews, social media integration, and SEO optimization enhance engagement, ensuring a user-friendly experience that boosts sales and customer satisfaction."
+    },
+    hospital: {
+        title: "Hospital Management System",
+        img: "hospital.png",
+        description: "A complete healthcare management solution streamlines patient records, appointment scheduling, and billing. It ensures secure data management, real-time scheduling, and seamless payment processing. Integrated features like telemedicine, reports, and notifications enhance efficiency, improving patient care and administrative workflow."
+    },
+    travel: {
+        title: "Travel Booking Platform",
+        img: "travel.png",
+        description: "A travel website offers flight booking, hotel reservations, and tour package management. Users can compare prices, check availability, and make secure bookings. Features like itinerary planning, reviews, and real-time updates enhance the experience, ensuring seamless and convenient travel arrangements."
+    },
+    job: {
+        title: "Job-portal",
+        img: "job-portal.png",
+        description: "A job platform connects seekers with employers, streamlining job searches and recruitment. It offers tailored matches, application tracking, and secure communication. Features like resume building, interview scheduling, and AI-driven recommendations enhance efficiency, ensuring a seamless hiring and job-hunting experience."
+    },
+    game: {
+        title: "Flappy Bird Game",
+        img: "flappy-bird.png",
+        description: "Flappy Bird is a side-scrolling mobile game where players tap to keep a bird airborne, navigating through gaps in green pipes. With simple mechanics but high difficulty, it challenges reflexes and precision, making it an addictive and competitive arcade experience."
+    },
+    portfolio: {
+        title: "Portfolio",
+        img: "portfolio.png",
+        description: "An interactive project portfolio features collaborative task management with real-time updates and progress tracking. It allows team members to assign tasks, set deadlines, and track milestones. Designed for seamless teamwork, it provides a clear overview of project status and ensures efficient oversight."
+    }
+};
+
+function openModal(projectKey) {
+    const project = projects[projectKey];
+    document.getElementById("modalTitle").innerText = project.title;
+    document.getElementById("modalImage").src = project.img;
+    document.getElementById("modalDescription").innerText = project.description;
+    document.getElementById("workModal").style.display = "block";
+    document.body.style.overflow = "hidden";
+}
+
+function closeModal() {
+    document.getElementById("workModal").style.display = "none";
+    document.body.style.overflow = "auto";
+}
+
+// Close modal when clicking outside
+window.onclick = function(event) {
+    const modal = document.getElementById("workModal");
+    if (event.target == modal) {
+        closeModal();
+    }
+}
+
+// Close modal with Escape key
+document.addEventListener("keydown", function(event) {
+    if (event.key === "Escape") {
+        closeModal();
+    }
+});
+
 sr.reveal('.home__data, .about__img, .skills__subtitle, .skills__text',{}); 
 sr.reveal('.home__img, .about__subtitle, .about__text, .skills__img',{delay: 400}); 
 sr.reveal('.home__social-icon',{ interval: 200}); 
