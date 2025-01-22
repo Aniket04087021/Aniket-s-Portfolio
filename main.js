@@ -1,3 +1,62 @@
+document.addEventListener("DOMContentLoaded", function () {
+    const texts = ["Web Developer", "UI/UX Developer", "Software Engineer"];
+    let index = 0;
+    let textIndex = 0;
+    let currentText = '';
+    let isDeleting = false;
+  
+    function typeWriter() {
+      if (index === texts.length) {
+        index = 1; // Reset to the first text
+      }
+  
+      currentText = texts[index];
+      if (isDeleting) {
+        textIndex--;
+        document.getElementById("element").textContent = currentText.slice(0, textIndex);
+      } else {
+        textIndex++;
+        document.getElementById("element").textContent = currentText.slice(0, textIndex);
+      }
+  
+      // Once we reach the full text, start deleting after a pause
+      if (!isDeleting && textIndex === currentText.length) {
+        setTimeout(() => {
+          isDeleting = true;
+        }, 1800);
+      }
+  
+      // Once we finish deleting the text, move to the next one
+      if (isDeleting && textIndex === 1) {
+        isDeleting = false;
+        index++;
+      }
+  
+      setTimeout(typeWriter, isDeleting ? 80 : 180); // Adjust speed for typing and deleting
+    }
+  
+    typeWriter(); // Start the typing effect
+  });
+  
+// Animate the skills progress bars when they come into view
+window.addEventListener('scroll', function () {
+    const skillsData = document.querySelectorAll('.skills__data');
+  
+    skillsData.forEach(function (skill) {
+      const skillPos = skill.getBoundingClientRect().top;
+      const screenHeight = window.innerHeight;
+  
+      if (skillPos < screenHeight * 0.8) {
+        const skillBar = skill.querySelector('.skills__bar');
+        const percentage = skill.querySelector('.skills__percentage');
+        const width = skillBar.style.width;
+  
+        // Set the width based on the percentage text
+        skillBar.style.width = percentage.innerText;
+      }
+    });
+  });
+  
 /*===== MENU SHOW =====*/ 
 const showMenu = (toggleId, navId) =>{
     const toggle = document.getElementById(toggleId),
